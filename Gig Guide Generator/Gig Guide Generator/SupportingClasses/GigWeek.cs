@@ -28,7 +28,7 @@ namespace Gig_Guide_Generator.SupportingClasses
 
             builder.Append(string.Format(" - {0}*\n\n", endDate.ToString("dd MMMM yyyy")));
 
-            foreach (IGrouping<DateTime, Gig> GigGroup in Gigs.GroupBy(g => g.StartTime).OrderBy(g => g.Key))
+            foreach (IGrouping<DateTime, Gig> GigGroup in Gigs.GroupBy(g => new DateTime(g.StartTime.Year, g.StartTime.Month, g.StartTime.Day)).OrderBy(g => g.Key))
             {
                 builder.AppendLine(string.Format("*{1} - {0}*", GigGroup.Key.ToString("dd MMMM yyyy"), GigGroup.Key.DayOfWeek));
                 builder.AppendLine();
